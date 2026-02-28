@@ -1,152 +1,127 @@
-# Changelog
-All notable changes to this project will be documented in this file.
+# Tasks: Count Directory Files (num_project)
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Calendar Versioning](https://calver.org/).
+**Input**: Design documents from `specs/001-count-dir-files/`
+**Prerequisites**: plan.md (required), spec.md (required)
 
-## [23.08.1]
-### Changed
-- Skip auto-tagging for heatbeat
-- Support http://*:8282/gerrit/
-- Improve CIofCI for generate release notes
-- Fix republish change.json ticket conflict [MR](https://gitlabe1.ext.net.nokia.com/prime/jenkins-shared-library/-/merge_requests/398)
-- Remove 3 months older artifacts [MR](https://gitlabe1.ext.net.nokia.com/prime/jenkins-shared-library/-/merge_requests/397)
+## Format: `[ID] [P?] [Story] Description`
 
-## [23.07.4]
-### Changed
-- Fix spec missing release_tags sometimes [CSSRCP-6764](https://jiradc.ext.net.nokia.com/browse/CSSRCP-6764)
-- Add release build name filter [FCA_ATFRCPCDC-35509](https://jiradc.ext.net.nokia.com/browse/FCA_ATFRCPCDC-35509)
-- Don't post promotion tag with very simple version [FCA_ATFRCPCDC-35497](https://jiradc.ext.net.nokia.com/browse/FCA_ATFRCPCDC-35497)
+- **[P]**: Can run in parallel (different files, no dependencies)
+- **[Story]**: Which user story this task belongs to (e.g., US1, US2, US3)
+- Include exact file paths in descriptions
 
-## [23.07.3]
-### Changed
-- Add USE_ANCHORE_FOR_DEV_BRANCH=false [CSSRCP-6559](https://jiradc.ext.net.nokia.com/browse/CSSRCP-6559)
-- Fix https connect to coop failure [MR](https://gitlabe1.ext.net.nokia.com/prime/jenkins-shared-library/-/merge_requests/393) 
-- Rename fci-helmchart to fci-pod for CIofCI
-- FCI UT Improvement [MR](https://gitlabe1.ext.net.nokia.com/prime/featureci/-/merge_requests/1302)
-- Move from fedora-devel to fedora36-devel [MR](https://gitlabe1.ext.net.nokia.com/prime/jenkins-shared-library/-/merge_requests/391) [MR2](https://gitlabe1.ext.net.nokia.com/prime/jenkins-job-shell/-/merge_requests/1171)
-- Remove python2 from Jenkins master [MR](https://gitlabe1.ext.net.nokia.com/prime/jenkins/-/merge_requests/245)
+---
 
-## [23.07.2]
-### Changed
-- auto-fill responsible person in correction form in Pronto [FCA_ATFRCPCDC-31218](https://jiradc.ext.net.nokia.com/browse/FCA_ATFRCPCDC-31218)
+## Phase 1: Setup (Shared Infrastructure)
 
+**Purpose**: Project initialization and basic structure
 
-## [23.07.1]
-### Changed
-- Add test case for FCI_Coop [FCA_ATFRCPCDC-34670](https://gitlabe1.ext.net.nokia.com/prime/apps/-/merge_requests/105)
-- Add approve check for upgrade case [MR](https://gitlabe1.ext.net.nokia.com/prime/featureci/-/merge_requests/1300)
-- Check pipeline status when rerun PQ [FCA_ATFRCPCDC-34178](https://jiradc.ext.net.nokia.com/browse/FCA_ATFRCPCDC-34178)
-- Add back promotion check for pod [MR](https://gitlabe1.ext.net.nokia.com/prime/featureci/-/merge_requests/1299)
-- Move Coop.py from jenkins-shared-library to jenkins-ci-library for reused by component-ci
-- Upgrade fedora36-devel packages for ramp down python2 later
+- [X] T001 Create project directory structure: num_project/, tests/
+- [X] T002 Create num_project/__init__.py with version info
+- [X] T003 [P] Create num_project/__main__.py entry point
+- [X] T004 [P] Create tests/__init__.py
+- [X] T005 Create README.md with usage documentation
 
-## [23.06.6]
-### Changed
-- Replace rcppkg with rpmbuild for src.rpm
+---
 
-## [23.06.5]
-### Changed
-- enable-k8s-dns for CIofCI
-- FCI should support correction form selection even when it is container or POD repo[FCA_ATFRCPCDC-34967](https://jiradc.ext.net.nokia.com/browse/FCA_ATFRCPCDC-34967)
-- Add package management start time [FCA_ATFRCPCDC-25918](https://jiradc.ext.net.nokia.com/browse/FCA_ATFRCPCDC-25918)
-### Fixed
-- fix_mergeable [CSSRCP-6569](https://jiradc.ext.net.nokia.com/browse/CSSRCP-6569)
-- pipeline triggered via FCI is mismatch with actual job[CSSRCP-6639](https://jiradc.ext.net.nokia.com/browse/CSSRCP-6639)
+## Phase 2: Foundational (Blocking Prerequisites)
 
-## [23.06.4]
-## Changed
-- create restful API interface so Operation team could more easily access E2E delivery metrics[FCA_ATFRCPCDC-24297](https://jiradc.ext.net.nokia.com/browse/FCA_ATFRCPCDC-24297) 
+**Purpose**: None needed for this simple project. No shared infrastructure beyond project structure.
 
-## [23.06.3]
-## Changed
-- Show blueocean on FCI-Build
-- Enable mod_status for FCI Dashboard
-- simplify RCP release notes metadata genenrator template[FCA_ATFRCPCDC-32810](https://jiradc.ext.net.nokia.com/browse/FCA_ATFRCPCDC-32810)
+**Checkpoint**: Foundation ready - user story implementation can now begin.
 
-## [23.06.2]
-### Changed
--  Stop using anonymous user when accessing Artifactory[FCA_ATFRCPCDC-34275](https://jiradc.ext.net.nokia.com/browse/FCA_ATFRCPCDC-34517)
+---
 
-## [23.06.1]
-### Changed
-- Update correction form with products [FCA_ATFRCPCDC-33769](https://jiradc.ext.net.nokia.com/browse/FCA_ATFRCPCDC-33769) [MR](https://gitlabe1.ext.net.nokia.com/prime/featureci/-/merge_requests/1276)
-- Change RCP to RCP2.0 for VNF VCU [MR](https://gitlabe1.ext.net.nokia.com/prime/featureci/-/merge_requests/1284)
-- Show ccs in delivery [MR](https://gitlabe1.ext.net.nokia.com/prime/featureci/-/merge_requests/1283)
-- Stop anonymous for artifactory except rcp-base [FCA_ATFRCPCDC-34275](https://jiradc.ext.net.nokia.com/browse/FCA_ATFRCPCDC-34275)
-### Fixed
-- Fix fci_coop not return fail when post error [MR](https://gitlabe1.ext.net.nokia.com/prime/jenkins-shared-library/-/merge_requests/375)
+## Phase 3: User Story 1 - Count Files in a Directory (Priority: P1) MVP
 
-## [23.05.4]
-### Added
-- Add VIP FCI-Dashboard
-### Changed
-- FCI branch to show vcu and vdu builds information of containers and pods [FCA_ATFRCPCDC-33147](https://jiradc.ext.net.nokia.com/browse/FCA_ATFRCPCDC-33147)
-### Fixed
-- Fix pre-check cannot block consolidated gerrit [CSSRCP-6491](https://jiradc.ext.net.nokia.com/browse/CSSRCP-6491)
+**Goal**: User can specify a directory and get the file count.
 
-## [23.05.3]
-### Changed
-- HelmChart E2E improvement [MR](https://gitlabe1.ext.net.nokia.com/prime/featureci/-/merge_requests/1268)
-- Visible the mapping of subsystem and pipelines [CSSRCP-6360](https://jiradc.ext.net.nokia.com/browse/CSSRCP-6360)
-- Send more coverity checkers(Top25) to Coop [MR](https://gitlabe1.ext.net.nokia.com/prime/jenkins-shared-library/-/merge_requests/369)
-- Update prime/apps configuration for artifactory
+**Independent Test**: Run `python -m num_project <dir>` and see the correct count.
 
-## [23.05.2]
-### Added
-- Add gitlab service
-- Add artifactory-oss service
-### Changed
-- Move gitlabe2/prime/ci-library to gitlabe1/prime/jenkins-ci-library
-- Move Log_Recheck from puller-jenkins to task-jenkins [CSSRCP-6473](https://jiradc.ext.net.nokia.com/browse/CSSRCP-6473)
-- Refactor manual tag rule
-### Fixed
-- Fix FCI_Coop empty case_DOD.json [CSSRCP-6471](https://jiradc.ext.net.nokia.com/browse/CSSRCP-6471)
-- Fix GearmanError: Unable to submit job
+### Implementation for User Story 1
 
-## [23.05.1]
-### Added
-- Update tag user guide when delete manual tag
-- fci_release_build_refactor
-- Fix "Correction Form" re-selected after edit feature
+- [X] T006 [US1] Implement count_files() function in num_project/counter.py
+- [X] T007 [US1] Implement CLI argument parsing and main() in num_project/cli.py
+- [X] T008 [US1] Wire up __main__.py to call cli.main()
+- [X] T009 [US1] Write unit tests for count_files() in tests/test_counter.py
+- [X] T010 [US1] Write CLI integration tests in tests/test_cli.py
 
-## [23.04.3]
-### Added
-- Add FCI_Bump-Pod [FCA_ATFRCPCDC-32891](https://jiradc.ext.net.nokia.com/browse/FCA_ATFRCPCDC-32891) [MR](https://gitlabe1.ext.net.nokia.com/prime/featureci/-/merge_requests/1252) [MR2](https://gitlabe1.ext.net.nokia.com/prime/jenkins-shared-library/-/merge_requests/355)
+**Checkpoint**: `python -m num_project <directory>` returns the correct file count.
 
-## [23.04.2]
-### Added
-- Push requirement_id to COOP [FCA_ATFRCPCDC-33066](https://jiradc.ext.net.nokia.com/browse/FCA_ATFRCPCDC-33066) [MR](https://gitlabe1.ext.net.nokia.com/prime/jenkins-shared-library/-/merge_requests/356)
-- Push coverity enabled checkers to COOP [FCA_ATFRCPCDC-33214](https://jiradc.ext.net.nokia.com/browse/FCA_ATFRCPCDC-33214) 
-### Changed
-- Upgrade jenkins [pipeline-graph-view](https://github.com/jenkinsci/pipeline-graph-view-plugin) plugin
-- Move FCI documentation from confluence to sphinx [MR](https://gitlabe1.ext.net.nokia.com/prime/featureci/-/merge_requests/1260)
-- Move FCI_Coop from freestyle to pipeline [MR](https://gitlabe1.ext.net.nokia.com/prime/jenkins-job-shell/-/merge_requests/1165)
-- Improve FCI_Cleaning for obsoleted kojiTags/features/artifacts [MR](https://gitlabe1.ext.net.nokia.com/prime/jenkins-shared-library/-/merge_requests/360)
-- Use python3 for featureci/fciagent [MR1](https://gitlabe1.ext.net.nokia.com/prime/featureci/-/merge_requests/1262) and [MR2](https://gitlabe1.ext.net.nokia.com/prime/jenkins-shared-library/-/merge_requests/361) 
-### Fixed
-- Fix get container pipeline error [MR](https://gitlabe1.ext.net.nokia.com/prime/jenkins-shared-library/-/merge_requests/352)
-- Fix Merge Request links for gitlab [MR](https://gitlabe1.ext.net.nokia.com/prime/featureci/-/merge_requests/1263)
-### Removed
-- Remove [mypython](https://gitlabe1.ext.net.nokia.com/prime/mypython) libraries
+---
 
-## [23.04.1]
-### Added
-- create fci_shadow_master for pod [MR](https://gitlabe1.ext.net.nokia.com/prime/jenkins-job-shell/-/merge_requests/1158)
-### Fixed
-- Fix FCI_PHASE=container_template [CSSRCP-6335](https://jiradc.ext.net.nokia.com/browse/CSSRCP-6335) [MR](https://gitlabe1.ext.net.nokia.com/prime/featureci/-/merge_requests/1259)
-- Fix TagLevel in git notes for container auto-tagging [MR](https://gitlabe1.ext.net.nokia.com/prime/jenkins-shared-library/-/merge_requests/354)
+## Phase 4: User Story 2 - Recursive File Counting (Priority: P2)
 
+**Goal**: User can count files recursively with --recursive flag.
 
-## [23.04.0]
-### Added
-- Add CHANGELOG.md
-- Add gitlabci for pages
-### Changed
-- Narrow down FCI service nodePort to kubernetes default range 30000-32767 [ports.ini](https://gitlabe1.ext.net.nokia.com/prime/deployment/-/blob/master/credentials/config/ports.ini)
-- Support fast deployment by moving jenkins-job-shell to jenkins-shared-library
-### Fixed
-- Increase 1000 pipelines limitation to 3000 for taas API /api/v1/feature
-- Fix forceRcpBaseImage update error
-- Fix rpm spec subsystem appears in the code subsystem candidate list [CSSRCP-6324](https://jiradc.ext.net.nokia.com/browse/CSSRCP-6324)
+**Independent Test**: Run `python -m num_project <dir> --recursive` and verify nested files are counted.
 
+### Implementation for User Story 2
+
+- [X] T011 [US2] Add count_files_recursive() to num_project/counter.py
+- [X] T012 [US2] Add --recursive / -r argument to CLI in num_project/cli.py
+- [X] T013 [US2] Add recursive counting tests in tests/test_counter.py
+- [X] T014 [US2] Add recursive CLI tests in tests/test_cli.py
+
+**Checkpoint**: `python -m num_project <dir> -r` counts all files in the tree.
+
+---
+
+## Phase 5: User Story 3 - Error Handling (Priority: P1)
+
+**Goal**: User sees clear error messages for invalid inputs.
+
+**Independent Test**: Run with non-existent path and verify error output.
+
+### Implementation for User Story 3
+
+- [X] T015 [US3] Add path validation logic in num_project/counter.py
+- [X] T016 [US3] Add error handling and --json output in num_project/cli.py
+- [X] T017 [US3] Add error scenario tests in tests/test_counter.py
+- [X] T018 [US3] Add error and JSON output CLI tests in tests/test_cli.py
+
+**Checkpoint**: All error scenarios produce clear messages, --json flag works.
+
+---
+
+## Phase 6: Polish & Cross-Cutting Concerns
+
+- [X] T019 [P] Final README.md update with all features documented
+- [X] T020 Run all tests and verify 100% pass rate
+
+---
+
+## Dependencies & Execution Order
+
+### Phase Dependencies
+
+- **Setup (Phase 1)**: No dependencies
+- **US1 (Phase 3)**: Depends on Setup
+- **US2 (Phase 4)**: Depends on US1 (extends counter.py and cli.py)
+- **US3 (Phase 5)**: Depends on US1 (adds validation to existing modules)
+- **Polish (Phase 6)**: Depends on all user stories
+
+### Parallel Opportunities
+
+- T003 and T004 can run in parallel (different files)
+- T009 and T010 can run in parallel after T006-T008
+- T019 can run in parallel with T020
+
+---
+
+## Implementation Strategy
+
+### MVP First (User Story 1 Only)
+
+1. Complete Phase 1: Setup
+2. Complete Phase 3: User Story 1
+3. **STOP and VALIDATE**: Test basic counting works
+4. Continue with US2 and US3
+
+### Summary
+
+- **Total tasks**: 20
+- **Phase 1 (Setup)**: 5 tasks
+- **Phase 3 (US1 - Count)**: 5 tasks
+- **Phase 4 (US2 - Recursive)**: 4 tasks
+- **Phase 5 (US3 - Errors)**: 4 tasks
+- **Phase 6 (Polish)**: 2 tasks
